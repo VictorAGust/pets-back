@@ -1,7 +1,7 @@
 package br.com.adopt.petsback.resource.pet;
 
 
-import br.com.adopt.petsback.domain.dto.PetDto;
+import br.com.adopt.petsback.domain.dto.PetResponseDto;
 import br.com.adopt.petsback.service.PetService;
 import br.com.adopt.petsback.service.adapter.PetMapper;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class PetResource {
     private final PetMapper petMapper;
 
     @GetMapping("/")
-    public ResponseEntity<List<PetDto>> getAll() {
+    public ResponseEntity<List<PetResponseDto>> getAll() {
         return ResponseEntity.status(HttpStatus.OK).body(petService.findAll());
     }
 }

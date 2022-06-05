@@ -1,6 +1,6 @@
 package br.com.adopt.petsback.service;
 
-import br.com.adopt.petsback.domain.dto.PetDto;
+import br.com.adopt.petsback.domain.dto.PetResponseDto;
 import br.com.adopt.petsback.domain.entity.Pet;
 import br.com.adopt.petsback.repository.PetRepository;
 import br.com.adopt.petsback.service.adapter.PetMapper;
@@ -18,8 +18,8 @@ public class PetService {
 
     private final PetMapper petMapper;
 
-    public List<PetDto> findAll() {
+    public List<PetResponseDto> findAll() {
         final List<Pet> pets = petRepository.findAll();
-        return pets.stream().map(petMapper::toPetDto).collect(Collectors.toList());
+        return pets.stream().map(petMapper::toPetResponseDto).collect(Collectors.toList());
     }
 }

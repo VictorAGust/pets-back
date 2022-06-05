@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PetDto {
+public class PetResponseDto {
 
     private Long id;
     private String name;
