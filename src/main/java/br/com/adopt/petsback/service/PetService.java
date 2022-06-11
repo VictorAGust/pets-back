@@ -1,5 +1,6 @@
 package br.com.adopt.petsback.service;
 
+import br.com.adopt.petsback.domain.dto.PetRequestDto;
 import br.com.adopt.petsback.domain.dto.PetResponseDto;
 import br.com.adopt.petsback.domain.entity.Pet;
 import br.com.adopt.petsback.repository.PetRepository;
@@ -8,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +21,11 @@ public class PetService {
     public List<PetResponseDto> findAll() {
         final List<Pet> pets = petRepository.findAll();
         return pets.stream().map(petBuilder::toPetResponseDto).toList();
+    }
+
+    public PetResponseDto create(PetRequestDto petRequestDto) {
+        var petToCreate = petBuilder.toModel(petRequestDto);
+        var createdPet = petRepository.save(petToCreate);
+        return petBuilder.toPetResponseDto(createdPet);
     }
 }
