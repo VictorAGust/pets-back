@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AdoptionService {
 
-    private final AdoptionMapper adoptionMapper;
+    private final AdoptionBuilder adoptionBuilder;
 
     private final AdoptionRepository adoptionRepository;
 
     public AdoptionResponseDto create(AdoptionRequestDto adoptionRequestDto) {
-        var adoption = adoptionMapper.toAdoption(adoptionRequestDto);
+        var adoption = adoptionBuilder.toAdoption(adoptionRequestDto);
         var createdAdoption = adoptionRepository.save(adoption);
-        return adoptionMapper.toResponseDto(createdAdoption);
+        return adoptionBuilder.toAdoptionResponseDto(createdAdoption);
 
     }
 }
